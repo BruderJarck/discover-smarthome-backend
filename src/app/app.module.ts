@@ -8,6 +8,8 @@ import { Login, NavComponent } from './components/nav/nav.component';
 import { ShopComponent } from './components/shop/shop.component';
 import components from './pages';
 import { SharedModule } from './shared/shared-module';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { FilterComponent } from './components/filter/filter.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { SharedModule } from './shared/shared-module';
     CartComponent,
     NavComponent,
     Login,
+    CategoriesComponent,
+    FilterComponent,
   ],
   imports: [
     BrowserModule,
