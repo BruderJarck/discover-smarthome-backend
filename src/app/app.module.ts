@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CartComponent } from './components/cart/cart.component';
-import { NavComponent } from './components/nav/nav.component';
+import { Login, NavComponent } from './components/nav/nav.component';
 import { ShopComponent } from './components/shop/shop.component';
 import components from './pages';
 import { SharedModule } from './shared/shared-module';
@@ -16,6 +16,7 @@ import { SharedModule } from './shared/shared-module';
     ShopComponent,
     CartComponent,
     NavComponent,
+    Login,
   ],
   imports: [
     BrowserModule,

@@ -1,1 +1,21 @@
-<p>nav works!</p>
+<div fxLayout="row" fxLayoutAlign="start center" class="nav-wrapper">
+  <div>
+    <button mat-raised-button color="primary" routerLink="">Shop</button>
+  </div>
+
+  <div fxFlex="grow" fxLayoutAlign="center none" class="search-bar partent">
+    <input class="search-bar child" fxFill />
+  </div>
+
+  <div>
+    <button mat-mini-fab color="primary" (click)="openDialog()">
+      <mat-icon>login</mat-icon>
+    </button>
+  </div>
+
+  <div>
+    <button mat-mini-fab color="primary" routerLink="cart">
+      <mat-icon>shopping_cart</mat-icon>
+    </button>
+  </div>
+</div>
