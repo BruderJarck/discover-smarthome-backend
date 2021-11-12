@@ -1,0 +1,23 @@
+.card {
+    width: 250px;
+    height: 250px;
+    a {
+        cursor: pointer;
+    }
+
+    .card-content {
+        &.picture {
+            max-height: 190px;
+        }
+        &.price {
+            height: 20px;
+        }
+        &.text {
+            height: 40px;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+        }
+    }
+}
