@@ -1,4 +1,8 @@
-<div fxLayout="row" class="body">
-  <app-sidebar></app-sidebar>
-  <app-shop></app-shop>
+<div fxLayout="row" class="page">
+  <div fxLayout="column" fxFlex="20%"> 
+    <app-sidebar fxFlex="grow"></app-sidebar>
+  </div>
+  <div fxLayout="column" fxFlex="80%">
+    <app-shop fxFlex="grow"></app-shop>
+  </div>
 </div>
