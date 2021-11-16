@@ -11,6 +11,7 @@ import { SharedModule } from './shared/shared-module';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
     Login,
     CategoriesComponent,
     SidebarComponent,
+    ProductDetailComponent,
   ],
   imports: [
     BrowserModule,
