@@ -9,6 +9,9 @@ import { AccountService } from './account.service';
 })
 export class ProductService {
 
+  products: ProductModel[] = []
+
+
   constructor(private http: HttpClient,
               private accService: AccountService,) { }
 
