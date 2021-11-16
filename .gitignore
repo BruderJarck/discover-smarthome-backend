@@ -2,6 +2,4 @@
 **__pycache__
 **venv
 
-/backend/hero_tour/db.sqlite3
-backend/hero_tour/media
 backend/hero_tour/venv/
