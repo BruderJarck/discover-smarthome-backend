@@ -1,25 +1,33 @@
-<div *ngIf="product" class="wrapper" fxFlex="grow" fxLayout="row"  class="content-container filled">
-    <div fxFlex="40%" fxLayout="column" fxLayoutAlign="start center">
-        <div fxLayout="column" class="picture"><img fxFlex="grow" [src]='product.img' alt=""></div>
-    </div> 
-    <div fxFlex="40%" fxLayout="column" class="content-container">
-        <h2>{{product.name}}</h2>
-        <mat-divider></mat-divider>
-        <div fxLayout="row" fxLayoutAlign="start center" class="price-box">
-            <div fxLayout="row" class="card-content price">
-                <div class="card-content price text">Preis: </div>
-                <div class="card-content price main">{{product.price}}</div>
-                <div class="card-content price upper" fxLayoutAlign="start start">99€</div>
-                <div class="card-content price description">(Preise exklusive USt und Versandkosten.)</div>
-            </div>
-        </div>
-        <div class="card-button" fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="start center"><button color="primary" mat-flat-button>In den Einkaufskorb</button>
-        <p>Jetzt NEU: Mit 28% Finanzierung bei unefektiven Jahreszins!</p></div>
-        <mat-divider></mat-divider>
-        <h3>Produktinformationen:</h3>
-        <p>{{product.description}}</p>
+<div *ngIf="product" class="wrapper" fxFlex="grow" class="content-container filled">
+    <div class="back-main" fxLayoutAlign="start center">
+        <span class="material-icons">
+            chevron_left
+            </span><a routerLink="">Zurrück zur Startseite</a>
     </div>
-    <div fxFlex="20%" fxLayout="column" fxLayoutAlign="start center">
-        <div fxLayout="column" class="picture" ><img fxFlex="grow" src="https://www.about-drinks.com/wp-content/uploads/2020/04/Warsteiner_wirbleibenzuhause-1.jpg" alt="Werbung"></div>
+    <mat-divider class="top-border"></mat-divider>
+    <div fxLayout="row" >
+        <div fxFlex="40%" fxLayout="column" fxLayoutAlign="start center">
+            <div fxLayout="column" class="picture"><img fxFlex="grow" [src]='product.img' alt=""></div>
+        </div> 
+        <div fxFlex="40%" fxLayout="column" class="content-container">
+            <h2>{{product.name}}</h2>
+            <mat-divider></mat-divider>
+            <div fxLayout="row" fxLayoutAlign="start center" class="price-box">
+                <div fxLayout="row" class="card-content price">
+                    <div class="card-content price text">Preis: </div>
+                    <div class="card-content price main">{{product.price}}</div>
+                    <div class="card-content price upper" fxLayoutAlign="start start">99€</div>
+                    <div class="card-content price description">(Preise exklusive USt und Versandkosten.)</div>
+                </div>
+            </div>
+            <div class="card-button" fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="start center"><button color="primary" mat-flat-button>In den Einkaufskorb</button>
+            <p>Jetzt NEU: Mit 28% Finanzierung bei unefektiven Jahreszins!</p></div>
+            <mat-divider style="margin-bottom: 8px;"></mat-divider>
+            <h3>Produktinformationen:</h3>
+            <p>{{product.description}}</p>
+        </div>
+        <div fxFlex="20%" fxLayout="column" fxLayoutAlign="start center">
+            <div fxLayout="column" class="picture" ><img fxFlex="grow" src="https://www.about-drinks.com/wp-content/uploads/2020/04/Warsteiner_wirbleibenzuhause-1.jpg" alt="Werbung"></div>
+        </div>
     </div>
 </div>

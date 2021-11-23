@@ -74,3 +74,27 @@ img {
         line-height: 12px
     }
 }
+
+.back-main ::ng-deep{
+    a {
+        font-size: 12px;
+        line-height: 12px;
+        text-decoration: none;
+        color: black;
+    }
+    a:hover {
+        text-decoration: underline;
+        color: black;
+    }
+    a:active {
+        color: black;
+    }
+    .material-icons {
+        font-size: 17px;
+    }
+}
+
+.top-border {
+    margin-bottom: 16px;
+    margin-top: 8px;
+}
