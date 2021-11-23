@@ -2,9 +2,6 @@
   padding: 16px 32px;
   background-color: whitesmoke;
   height: 72px;
-  div {
-    padding: 0 8px;
-  }
 }
 
 .search-bar {
@@ -15,4 +12,13 @@
   &.child {
     box-sizing: border-box;
   }
+}
+
+img {
+  height: 50px
+}
+
+.button ::ng-deep .mat-flat-button, .mat-raised-button, .mat-fab, .mat-mini-fab {
+  color: black;
+  background-color: #fbac09;
 }

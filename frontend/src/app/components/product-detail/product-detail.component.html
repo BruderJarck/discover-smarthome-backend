@@ -1,13 +1,25 @@
 <div *ngIf="product" class="wrapper" fxFlex="grow" fxLayout="row"  class="content-container filled">
-    <div fxFlex="50%" fxLayout="column" fxLayoutAlign="start center">
+    <div fxFlex="40%" fxLayout="column" fxLayoutAlign="start center">
         <div fxLayout="column" class="picture"><img fxFlex="grow" [src]='product.img' alt=""></div>
     </div> 
-    <div fxFlex="30%" fxLayout="column" class="content-container">
+    <div fxFlex="40%" fxLayout="column" class="content-container">
         <h2>{{product.name}}</h2>
         <mat-divider></mat-divider>
+        <div fxLayout="row" fxLayoutAlign="start center" class="price-box">
+            <div fxLayout="row" class="card-content price">
+                <div class="card-content price text">Preis: </div>
+                <div class="card-content price main">{{product.price}}</div>
+                <div class="card-content price upper" fxLayoutAlign="start start">99€</div>
+                <div class="card-content price description">(Preise exklusive USt und Versandkosten.)</div>
+            </div>
+        </div>
+        <div class="card-button" fxLayout="row" fxLayoutGap="16px" fxLayoutAlign="start center"><button color="primary" mat-flat-button>In den Einkaufskorb</button>
+        <p>Jetzt NEU: Mit 28% Finanzierung bei unefektiven Jahreszins!</p></div>
+        <mat-divider></mat-divider>
+        <h3>Produktinformationen:</h3>
         <p>{{product.description}}</p>
     </div>
-    <div fxFlex="20%" fxLayout="column" fxLayoutAlign="start center" class="content-container">
-        <img fxFlex="grow" class="picture" src="https://th.bing.com/th/id/R.396a30f05e4805365c414ccd22289916?rik=fbE3C8hShv8XKQ&riu=http%3a%2f%2fwerbungetc.de%2fwp-content%2fuploads%2f2018%2f06%2fSHB_Website_NEU.jpg&ehk=%2fUejdEf3BAHCQSmec%2fo33n9o3LIqD3cx2EvfsYAStnE%3d&risl=&pid=ImgRaw&r=0" alt="Werbung">
+    <div fxFlex="20%" fxLayout="column" fxLayoutAlign="start center">
+        <div fxLayout="column" class="picture" ><img fxFlex="grow" src="https://www.about-drinks.com/wp-content/uploads/2020/04/Warsteiner_wirbleibenzuhause-1.jpg" alt="Werbung"></div>
     </div>
 </div>
