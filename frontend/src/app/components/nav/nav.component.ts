@@ -31,6 +31,8 @@ export class NavComponent implements OnInit {
 })
 export class Login {
   email = new FormControl('', [Validators.required, Validators.email]);
+  password = new FormControl('', [Validators.required]);
+  
   hide = true;
 
   getErrorMessage() {
@@ -39,5 +41,10 @@ export class Login {
     }
 
     return this.email.hasError('email') ? 'Not a valid email' : '';
+  }
+
+  onSubmit() {
+    console.log(this.email.value);
+    console.log(this.password.value);
   }
 }
