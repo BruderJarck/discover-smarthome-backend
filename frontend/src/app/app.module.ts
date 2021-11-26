@@ -13,6 +13,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { ProductDetailPageComponent } from './pages/product-detail-page/product-detail-page.component';
+import { SharedService } from './shared/shared.service';
 
 
 @NgModule({
@@ -34,7 +35,7 @@ import { ProductDetailPageComponent } from './pages/product-detail-page/product-
     BrowserAnimationsModule,
     SharedModule,
   ],
-  providers: [{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService],
+  providers: [{ provide: JWT_OPTIONS, useValue: JWT_OPTIONS }, JwtHelperService, SharedService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
