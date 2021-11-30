@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { AccountService } from 'src/app/shared/account.service';
+import { Router } from '@angular/router';
 
 export interface Chip {
   name: string;
@@ -34,6 +36,9 @@ export class Login {
   password = new FormControl('', [Validators.required]);
   
   hide = true;
+  constructor(public accountService: AccountService,
+              private router: Router,
+    ){}
 
   getErrorMessage() {
     if (this.email.hasError('required')) {
@@ -44,6 +49,12 @@ export class Login {
   }
 
   onSubmit() {
+    this.accountService.getTokensFromBackend(this.email.value, this.password.value).subscribe(
+      () => this.router.navigateByUrl('/user'), 
+      err => {
+        console.log(err);
+        
+      })
     console.log(this.email.value);
     console.log(this.password.value);
   }

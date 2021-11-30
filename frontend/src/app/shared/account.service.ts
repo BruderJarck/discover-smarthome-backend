@@ -4,6 +4,7 @@ import { tap } from 'rxjs/operators';
 import { UserModel } from '../user';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { RespModel } from '../resp';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,7 @@ export class AccountService {
   constructor(
     private http: HttpClient,
     private jwtHelper: JwtHelperService,
+    private router: Router,
     ) { }
 
   private baseURL = 'http://127.0.0.1:5000/'
@@ -40,6 +42,13 @@ export class AccountService {
     return this.jwtHelper.isTokenExpired(token)
   }
 
+  canActivate(): boolean {
+    if (this.isExpired(localStorage.getItem('access') || "")) {
+      this.router.navigate(['/']);
+      return false;
+    }
+    return true;
+  }
   getTokensFromBackend(username: string, password:string){
     return this.http.post<UserModel>(this.baseURL + 'api/token/', {username, password}).pipe(
       tap(res => {

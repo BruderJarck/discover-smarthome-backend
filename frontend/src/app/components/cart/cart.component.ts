@@ -17,5 +17,4 @@ export class CartComponent implements OnInit {
       this.items = [...item]
     })
   }
-
 }
