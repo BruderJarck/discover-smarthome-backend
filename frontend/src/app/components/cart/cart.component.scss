@@ -1,0 +1,36 @@
+.wrapper {
+    overflow: auto;
+}
+
+.picture {
+    overflow: hidden;
+}
+
+.card {
+    max-height: 150px;
+    margin-bottom: 16px;
+}
+
+img {
+    height: 100%;
+}
+
+.text {
+    padding: 16px;
+}
+
+.description {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
+.title {
+    font-weight: 500;
+    font-size: 18px;
+}
+
+input {
+    width: 40px;
+}
