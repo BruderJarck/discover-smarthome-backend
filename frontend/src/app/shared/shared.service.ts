@@ -40,13 +40,17 @@ export class SharedService {
 
   set addProducts(ammount: number) {
     this.totalAmmount = this.totalAmmount + ammount;
-    if (this.totalAmmount <= 99) {
-      this.productAmmountSource.next(this.totalAmmount.toString())
-    } else if (this.totalAmmount > 99) {
-      this.productAmmountSource.next("99+")
+    if (this.totalAmmount > 0) {
+      if (this.totalAmmount <= 99) {
+        this.productAmmountSource.next(this.totalAmmount.toString())
+      } else if (this.totalAmmount > 99) {
+        this.productAmmountSource.next("99+")
+      } else if (this.totalAmmount == 0) {
+        this.totalAmmount = 0
+        this.productAmmountSource.next("0")
+      }
     }
-    
-  }
+}
 
   constructor() {}
 }
