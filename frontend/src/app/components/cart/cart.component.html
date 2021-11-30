@@ -8,16 +8,22 @@
                 <mat-card-content fxFlex="grow">
                     <div fxLayout="row" fxFlex="grow">
                         <div fxFlex="30%" class="picture" fxLayoutAlign="center none" ><img [src]="item.product.img"></div>
-                        <div fxFlex="50%" class="text">
+                        <div fxFlex="65%" class="text">
                             <div class="title">{{item.product.name}}</div>
                             <div class="description">
                                 {{item.product.description}}
                             </div>
-                            <div fxLayout="row">
+                            <div fxLayout="row" class="options">
                                 <div>Menge: <input type="number" min="1" max="100" [value]="item.ammount" required></div>
                             </div>
                         </div>
-                        <div fxFlex="20%"></div>
+                        <div fxFlex="15%" fxLayout="column" class="card-content price wrapper" fxLayoutAlign="start">
+                            <div class="card-content price name" fxLayoutAlign="end">Preis: </div>
+                            <div fxLayout="row" fxLayoutAlign="end">
+                                <div class="card-content price main">{{item.product.price}}</div>
+                                <div class="card-content price upper" fxLayoutAlign="start start">99€</div>
+                            </div>
+                        </div>
                     </div>
                 </mat-card-content>
               </mat-card>
