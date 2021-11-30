@@ -1,15 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { ProductService } from 'src/app/shared/product.service';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductModel } from '../../product'
+import { ProductService } from 'src/app/shared/product.service';
 import { SharedService } from 'src/app/shared/shared.service';
-
-
+import { ProductModel } from '../../product';
 
 @Component({
   selector: 'app-product-detail',
   templateUrl: './product-detail.component.html',
-  styleUrls: ['./product-detail.component.scss']
+  styleUrls: ['./product-detail.component.scss'],
 })
 export class ProductDetailComponent implements OnInit {
   @Input() product?: ProductModel;
@@ -17,11 +15,15 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    public sharedService: SharedService) { }
+    public sharedService: SharedService
+  ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'))
-    this.productService.getProduct(id).subscribe(res => this.product = res, err => console.log(err))
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.productService.getProduct(id).subscribe(
+      (res) => (this.product = res),
+      (err) => console.log(err)
+    );
   }
 
   onCollect() {

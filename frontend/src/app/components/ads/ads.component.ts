@@ -3,13 +3,10 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-ads',
   templateUrl: './ads.component.html',
-  styleUrls: ['./ads.component.scss']
+  styleUrls: ['./ads.component.scss'],
 })
 export class AdsComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

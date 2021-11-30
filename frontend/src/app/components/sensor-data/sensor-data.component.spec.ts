@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SensorDataComponent } from './sensor-data.component';
 
 describe('SensorDataComponent', () => {
@@ -8,9 +7,8 @@ describe('SensorDataComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SensorDataComponent ]
-    })
-    .compileComponents();
+      declarations: [SensorDataComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

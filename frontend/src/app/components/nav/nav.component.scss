@@ -15,15 +15,18 @@
 }
 
 img {
-  height: 50px
+  height: 50px;
 }
 
-.button ::ng-deep .mat-flat-button, .mat-raised-button, .mat-fab, .mat-mini-fab {
+.button ::ng-deep .mat-flat-button,
+.mat-raised-button,
+.mat-fab,
+.mat-mini-fab {
   color: black;
   background-color: #fbac09;
 }
 
 ::ng-deep .mat-badge-medium .mat-badge-content {
-    background-color: #000000;
-    color: #fbac09;
+  background-color: #000000;
+  color: #fbac09;
 }

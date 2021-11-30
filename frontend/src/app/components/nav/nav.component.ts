@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { AccountService } from 'src/app/shared/account.service';
 import { Router } from '@angular/router';
+import { AccountService } from 'src/app/shared/account.service';
 import { SharedService } from 'src/app/shared/shared.service';
 
 export interface Chip {
@@ -15,15 +15,15 @@ export interface Chip {
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent implements OnInit {
-  ammount: any = 0
+  ammount: any = 0;
 
-  constructor(public dialog: MatDialog, public sharedService: SharedService) { }
+  constructor(public dialog: MatDialog, public sharedService: SharedService) {}
 
   ngOnInit(): void {
     this.sharedService.addProducts = 0;
     this.sharedService.productAmmount.subscribe((ammount: any) => {
-      this.ammount = ammount
-    })
+      this.ammount = ammount;
+    });
   }
 
   openDialog() {
@@ -42,11 +42,9 @@ export class NavComponent implements OnInit {
 export class Login {
   email = new FormControl('', [Validators.required, Validators.email]);
   password = new FormControl('', [Validators.required]);
-  
+
   hide = true;
-  constructor(public accountService: AccountService,
-              private router: Router,
-    ){}
+  constructor(public accountService: AccountService, private router: Router) {}
 
   getErrorMessage() {
     if (this.email.hasError('required')) {
@@ -57,12 +55,14 @@ export class Login {
   }
 
   onSubmit() {
-    this.accountService.getTokensFromBackend(this.email.value, this.password.value).subscribe(
-      () => this.router.navigateByUrl('/user'), 
-      err => {
-        console.log(err);
-        
-      })
+    this.accountService
+      .getTokensFromBackend(this.email.value, this.password.value)
+      .subscribe(
+        () => this.router.navigateByUrl('/user'),
+        (err) => {
+          console.log(err);
+        }
+      );
     console.log(this.email.value);
     console.log(this.password.value);
   }
