@@ -17,4 +17,8 @@ export class CartComponent implements OnInit {
       this.items = [...item]
     })
   }
+
+  removeItem() {
+    this.sharedService.addProducts = -1;
+  }
 }

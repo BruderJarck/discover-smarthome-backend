@@ -20,6 +20,7 @@ export class NavComponent implements OnInit {
   constructor(public dialog: MatDialog, public sharedService: SharedService) { }
 
   ngOnInit(): void {
+    this.sharedService.addProducts = 0;
     this.sharedService.productAmmount.subscribe((ammount: any) => {
       this.ammount = ammount
     })

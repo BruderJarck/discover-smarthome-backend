@@ -45,12 +45,13 @@ export class SharedService {
         this.productAmmountSource.next(this.totalAmmount.toString())
       } else if (this.totalAmmount > 99) {
         this.productAmmountSource.next("99+")
-      } else if (this.totalAmmount == 0) {
+      }
+    } else {
         this.totalAmmount = 0
         this.productAmmountSource.next("0")
-      }
     }
-}
+  }
+
 
   constructor() {}
 }
