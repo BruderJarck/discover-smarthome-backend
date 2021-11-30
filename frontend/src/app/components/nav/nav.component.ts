@@ -3,6 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { AccountService } from 'src/app/shared/account.service';
 import { Router } from '@angular/router';
+import { SharedService } from 'src/app/shared/shared.service';
 
 export interface Chip {
   name: string;
@@ -14,9 +15,15 @@ export interface Chip {
   styleUrls: ['./nav.component.scss'],
 })
 export class NavComponent implements OnInit {
-  constructor(public dialog: MatDialog) {}
+  ammount: any = 0
 
-  ngOnInit(): void {}
+  constructor(public dialog: MatDialog, public sharedService: SharedService) { }
+
+  ngOnInit(): void {
+    this.sharedService.productAmmount.subscribe((ammount: any) => {
+      this.ammount = ammount
+    })
+  }
 
   openDialog() {
     const dialogRef = this.dialog.open(Login);

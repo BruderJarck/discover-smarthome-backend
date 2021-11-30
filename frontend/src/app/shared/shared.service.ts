@@ -6,13 +6,15 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class SharedService {
 
-  selectedProducts: any = []
+  selectedProducts: any = [];
+  totalAmmount: number = 0;
     
   private procductListSource = new BehaviorSubject([]);
   productList = this.procductListSource.asObservable();
 
   set addProduct(product: any) {
     let counter: number = 0
+    
 
     if (this.selectedProducts.length == 0) {
       this.selectedProducts.push({product: product, ammount: 1})
@@ -29,14 +31,22 @@ export class SharedService {
         this.selectedProducts.push({product: product, ammount: 1})
       }
   }
-    this.procductListSource.next(this.selectedProducts)
+    this.procductListSource.next(this.selectedProducts) 
   }
 
-  resetList() {
-    this.selectedProducts = []
-  }
 
-  
+  private productAmmountSource = new BehaviorSubject("");
+  productAmmount = this.productAmmountSource.asObservable()
+
+  set addProducts(ammount: number) {
+    this.totalAmmount = this.totalAmmount + ammount;
+    if (this.totalAmmount <= 99) {
+      this.productAmmountSource.next(this.totalAmmount.toString())
+    } else if (this.totalAmmount > 99) {
+      this.productAmmountSource.next("99+")
+    }
+    
+  }
 
   constructor() {}
 }

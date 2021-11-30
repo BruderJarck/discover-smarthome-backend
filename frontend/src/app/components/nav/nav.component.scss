@@ -22,3 +22,8 @@ img {
   color: black;
   background-color: #fbac09;
 }
+
+::ng-deep .mat-badge-medium .mat-badge-content {
+    background-color: #000000;
+    color: #fbac09;
+}

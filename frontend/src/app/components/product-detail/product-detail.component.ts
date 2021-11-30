@@ -25,6 +25,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   onCollect() {
-    this.sharedService.addProduct = this.product
+    this.sharedService.addProduct = this.product;
+    this.sharedService.addProducts = 1;
   }
 }
