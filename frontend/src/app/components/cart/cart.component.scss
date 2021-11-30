@@ -34,3 +34,32 @@ img {
 input {
     width: 40px;
 }
+
+.card-content {
+    &.picture {
+        max-height: 190px;
+    }
+    &.price {
+        &.wrapper {
+            padding-bottom: 4px;
+        }
+        &.main {
+            font-weight: 500;
+            font-size: 18px;
+        }
+        &.upper {
+            height: 20px;
+            font-size: 12px;
+            line-height: 15px;
+            padding-left: 1px;
+            font-weight: 450;
+        }
+        &.name {
+            padding-right: 6px;
+        }
+    }
+}
+
+.options {
+    padding-top: 8px;
+}
