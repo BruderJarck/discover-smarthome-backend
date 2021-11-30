@@ -2,7 +2,7 @@ from django.db import models
 
 
 def upload_path(instance, filename):
-    return "/".join(["heros", instance.name, filename]) or "/"
+    return "/".join(["products", instance.name, filename]) or "/"
 
 class ProductModel(models.Model):
     id = models.AutoField(primary_key=True)

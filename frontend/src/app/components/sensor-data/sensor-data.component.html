@@ -1,1 +1,20 @@
-<p>sensor-data works!</p>
+<h2 class="header">Your sensors: </h2>
+<mat-accordion>
+    <div *ngFor="let sensor of sensors">
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          {{sensor.name}}
+        </mat-panel-title>
+        <mat-panel-description>
+          location: {{sensor.location}}
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="card">
+        <p-chart type="line" [data]=sensor.data></p-chart>
+      </div> 
+    </mat-expansion-panel>
+    </div>
+
+</mat-accordion>
+  
