@@ -17,7 +17,19 @@ export class CartComponent implements OnInit {
     });
   }
 
-  removeItem(ammount: number) {
-    this.sharedService.addProducts = -ammount;
+  removeItem(e: any) {
+    let id = e.product.id;
+    let ammount = e.ammount;
+    this.sharedService.deleteProductById(id, -ammount);
+  }
+
+  changeAmmount(e: any, who: string) {
+    let id = e.product.id;
+
+    if (who == 'add') {
+      this.sharedService.changeAmmountById(id, 1);
+    } else {
+      this.sharedService.changeAmmountById(id, -1);
+    }
   }
 }

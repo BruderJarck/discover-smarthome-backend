@@ -1,4 +1,4 @@
-<div *ngIf="items.length == 0" class="wrapper">allo</div>
+<div *ngIf="items.length == 0" class="wrapper" fxFlex="grow">allo</div>
 <div
   fxLayout="row"
   class="content-container wrapper"
@@ -21,7 +21,7 @@
               </div>
               <div fxLayout="row" class="options" fxLayoutAlign="none center">
                 <div>Menge:</div>
-                <button mat-icon-button>
+                <button mat-icon-button (click)="changeAmmount(item, 'sub')">
                   <mat-icon>remove</mat-icon>
                 </button>
                 <p-inputNumber
@@ -36,13 +36,11 @@
                   [maxlength]="3"
                 >
                 </p-inputNumber>
-                <button mat-icon-button>
+                <button mat-icon-button (click)="changeAmmount(item, 'add')">
                   <mat-icon>add</mat-icon>
                 </button>
                 <div class="divider"></div>
-                <a class="remove-item" (click)="removeItem(item.ammount)"
-                  >Entfernen</a
-                >
+                <a class="remove-item" (click)="removeItem(item)">Entfernen</a>
               </div>
             </div>
             <div

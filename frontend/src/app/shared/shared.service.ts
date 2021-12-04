@@ -36,16 +36,32 @@ export class SharedService {
 
   set addProducts(ammount: number) {
     this.totalAmmount = this.totalAmmount + ammount;
-    if (this.totalAmmount > 0) {
-      if (this.totalAmmount <= 99) {
-        this.productAmmountSource.next(this.totalAmmount.toString());
-      } else if (this.totalAmmount > 99) {
-        this.productAmmountSource.next('99+');
+    this.productAmmountSource.next(this.totalAmmount.toString());
+  }
+
+  deleteProductById(productId: number, ammount: number) {
+    for (let item of this.selectedProducts) {
+      if (item.product.id === productId) {
+        this.selectedProducts.splice(this.selectedProducts.indexOf(item), 1);
+
+        this.addProducts = ammount;
+
+        break;
       }
-    } else {
-      this.totalAmmount = 0;
-      this.productAmmountSource.next('0');
     }
+    this.procductListSource.next(this.selectedProducts);
+  }
+
+  changeAmmountById(productId: number, ammount: number) {
+    for (let item of this.selectedProducts) {
+      if (item.product.id === productId) {
+        if (item.ammount != 0 || ammount != -1) {
+          item.ammount = item.ammount + ammount;
+          this.addProducts = ammount;
+        }
+      }
+    }
+    this.procductListSource.next(this.selectedProducts);
   }
 
   constructor() {}
