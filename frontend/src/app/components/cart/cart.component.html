@@ -1,75 +1,87 @@
-<div *ngIf="items.length == 0" class="wrapper" fxFlex="grow">allo</div>
+<div
+  *ngIf="items.length == 0"
+  class="wrapper shop-now"
+  fxLayout="column"
+  fxLayoutAlign="center center"
+>
+  <h1>Es sind keine Produkte im Einkaufskorb.</h1>
+  <button mat-raised-button routerLink="/product-list">Jetzt shoppen!</button>
+</div>
 <div
   fxLayout="row"
   class="content-container wrapper"
   fxLayoutGap="16px"
-  fxFlex="grow"
+  fxLayout="column"
   *ngIf="items.length != 0"
 >
-  <div fxLayout="column" fxFlex="60%">
-    <div fxFlex="grow">
-      <mat-card *ngFor="let item of items" class="card">
-        <mat-card-content fxFlex="grow">
-          <div fxLayout="row" fxFlex="grow">
-            <div fxFlex="30%" class="picture" fxLayoutAlign="center none">
-              <img [src]="item.product.img" />
-            </div>
-            <div fxFlex="65%" class="text">
-              <div class="title">{{ item.product.name }}</div>
-              <div class="description">
-                {{ item.product.description }}
+  <div fxLayout="row">
+    <div fxLayout="column" fxFlex="60%">
+      <div fxFlex="grow">
+        <mat-card *ngFor="let item of items" class="card">
+          <mat-card-content fxFlex="grow">
+            <div fxLayout="row" fxFlex="grow">
+              <div fxFlex="30%" class="picture" fxLayoutAlign="center none">
+                <img [src]="item.product.img" />
               </div>
-              <div fxLayout="row" class="options" fxLayoutAlign="none center">
-                <div>Menge:</div>
-                <button mat-icon-button (click)="changeAmmount(item, 'sub')">
-                  <mat-icon>remove</mat-icon>
-                </button>
-                <p-inputNumber
-                  [(ngModel)]="item.ammount"
-                  [showButtons]="false"
-                  buttonLayout="horizontal"
-                  inputId="horizontal"
-                  spinnerMode="horizontal"
-                  [min]="1"
-                  [max]="100"
-                  class="test box"
-                  [maxlength]="3"
-                >
-                </p-inputNumber>
-                <button mat-icon-button (click)="changeAmmount(item, 'add')">
-                  <mat-icon>add</mat-icon>
-                </button>
-                <div class="divider"></div>
-                <a class="remove-item" (click)="removeItem(item)">Entfernen</a>
-              </div>
-            </div>
-            <div
-              fxFlex="15%"
-              fxLayout="column"
-              class="card-content price wrapper"
-              fxLayoutAlign="start"
-            >
-              <div class="card-content price name" fxLayoutAlign="end">
-                Einzelpreis:
-              </div>
-              <div fxLayout="row" fxLayoutAlign="end">
-                <div class="card-content price main">
-                  {{ item.product.price }}
+              <div fxFlex="65%" class="text">
+                <div class="title">{{ item.product.name }}</div>
+                <div class="description">
+                  {{ item.product.description }}
                 </div>
-                <div
-                  class="card-content price upper"
-                  fxLayoutAlign="start start"
-                >
-                  99€
+                <div fxLayout="row" class="options" fxLayoutAlign="none center">
+                  <div>Menge:</div>
+                  <button mat-icon-button (click)="changeAmmount(item, 'sub')">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                  <p-inputNumber
+                    [(ngModel)]="item.ammount"
+                    [showButtons]="false"
+                    buttonLayout="horizontal"
+                    inputId="horizontal"
+                    spinnerMode="horizontal"
+                    [min]="1"
+                    [max]="100"
+                    class="test box"
+                    [maxlength]="3"
+                  >
+                  </p-inputNumber>
+                  <button mat-icon-button (click)="changeAmmount(item, 'add')">
+                    <mat-icon>add</mat-icon>
+                  </button>
+                  <div class="divider"></div>
+                  <a class="remove-item" (click)="removeItem(item)"
+                    >Entfernen</a
+                  >
                 </div>
               </div>
+              <div
+                fxFlex="15%"
+                fxLayout="column"
+                class="card-content price wrapper"
+                fxLayoutAlign="start"
+              >
+                <div class="card-content price name" fxLayoutAlign="end">
+                  Einzelpreis:
+                </div>
+                <div fxLayout="row" fxLayoutAlign="end">
+                  <div class="card-content price main">
+                    {{ item.product.price }}
+                  </div>
+                  <div
+                    class="card-content price upper"
+                    fxLayoutAlign="start start"
+                  >
+                    99€
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        </mat-card-content>
-      </mat-card>
+          </mat-card-content>
+        </mat-card>
+      </div>
     </div>
-  </div>
-  <div fxLayout="column" fxFlex="40%">
-    <div fxFlex="grow">bla</div>
+    <div fxLayout="column" fxFlex="40%">
+      <div fxFlex="grow">bla</div>
+    </div>
   </div>
 </div>

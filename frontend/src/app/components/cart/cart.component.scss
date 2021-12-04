@@ -1,7 +1,12 @@
+.wrapper::parent {
+  flex: 2;
+}
+
 .wrapper {
   overflow: auto;
   padding: 16px;
   height: 100%;
+  background-color: whitesmoke;
 }
 
 .picture {
@@ -11,7 +16,6 @@
 .card {
   max-height: 150px;
   margin-bottom: 16px;
-  background-color: whitesmoke;
 }
 
 img {
@@ -43,6 +47,7 @@ input {
     max-height: 190px;
   }
   &.price {
+    background: white;
     &.wrapper {
       padding-bottom: 4px;
     }
