@@ -55,7 +55,7 @@ export class SharedService {
   changeAmmountById(productId: number, ammount: number) {
     for (let item of this.selectedProducts) {
       if (item.product.id === productId) {
-        if (item.ammount != 0 || ammount != -1) {
+        if (item.ammount != 1 || ammount != -1) {
           item.ammount = item.ammount + ammount;
           this.addProducts = ammount;
         }

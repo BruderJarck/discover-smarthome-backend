@@ -4,17 +4,19 @@
   fxLayout="column"
   fxLayoutAlign="center center"
 >
-  <h1>Es sind keine Produkte im Einkaufskorb.</h1>
-  <button mat-raised-button routerLink="/product-list">Jetzt shoppen!</button>
+  <h1>Es sind keine Produkte im Einkaufskorb</h1>
+  <button mat-flat-button routerLink="/product-list" class="button">
+    Jetzt shoppen!
+  </button>
+  <p>Und abzezockt werden™</p>
 </div>
 <div
   fxLayout="row"
   class="content-container wrapper"
-  fxLayoutGap="16px"
   fxLayout="column"
   *ngIf="items.length != 0"
 >
-  <div fxLayout="row">
+  <div fxLayout="row" fxLayoutGap="16px">
     <div fxLayout="column" fxFlex="60%">
       <div fxFlex="grow">
         <mat-card *ngFor="let item of items" class="card">
@@ -81,7 +83,9 @@
       </div>
     </div>
     <div fxLayout="column" fxFlex="40%">
-      <div fxFlex="grow">bla</div>
+      <div fxFlex="grow">
+        <mat-card *ngFor="let item of items" class="card"> hallo </mat-card>
+      </div>
     </div>
   </div>
 </div>
