@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { SharedService } from 'src/app/shared/shared.service';
 
 @Component({
@@ -16,7 +17,7 @@ export class CartComponent implements OnInit {
   totalItemsBaseCost: number = 0
   shipCost: number = 78 //in €
 
-  constructor(public sharedService: SharedService) {}
+  constructor(public sharedService: SharedService, private _snackBar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.sharedService.productList.subscribe((item: any) => {
@@ -32,13 +33,20 @@ export class CartComponent implements OnInit {
     this.sharedService.deleteProductById(id, -ammount);
   }
 
-  changeAmmount(e: any, who: string) {
-    let id = e.product.id;
-
-    if (who == 'add') {
+  changeAmmount(eid: any, who: string, e: any) {
+    let val = Number(e.srcElement.value)
+    let id = eid.product.id;
+    let ammount = eid.ammount
+    
+    if (val >= 1 && val && val <=100) {
+      this.sharedService.changeTotalAmmountById(id, val)
+    } else if (who == 'add' && ammount < 100) {
       this.sharedService.changeAmmountById(id, 1);
-    } else {
+    } else if (who == 'sub' && ammount > 1){
       this.sharedService.changeAmmountById(id, -1);
+    } else {
+      let duration = 1 * 1000
+      this._snackBar.open('Ungültiger Wert', undefined, {"duration": duration});
     }
   }
 

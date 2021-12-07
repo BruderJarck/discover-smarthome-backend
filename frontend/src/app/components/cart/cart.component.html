@@ -32,22 +32,11 @@
                 </div>
                 <div fxLayout="row" class="options" fxLayoutAlign="none center">
                   <div>Menge:</div>
-                  <button mat-icon-button (click)="changeAmmount(item, 'sub')">
+                  <button mat-icon-button (click)="changeAmmount(item, 'sub', $event)">
                     <mat-icon>remove</mat-icon>
                   </button>
-                  <p-inputNumber
-                    [(ngModel)]="item.ammount"
-                    [showButtons]="false"
-                    buttonLayout="horizontal"
-                    inputId="horizontal"
-                    spinnerMode="horizontal"
-                    [min]="1"
-                    [max]="100"
-                    class="test box"
-                    [maxlength]="3"
-                  >
-                  </p-inputNumber>
-                  <button mat-icon-button (click)="changeAmmount(item, 'add')">
+                  <input type="text" class="test" [value]="item.ammount" (change)="changeAmmount(item, 'neut', $event)" maxlength="3">
+                  <button mat-icon-button (click)="changeAmmount(item, 'add', $event)">
                     <mat-icon>add</mat-icon>
                   </button>
                   <div class="divider"></div>

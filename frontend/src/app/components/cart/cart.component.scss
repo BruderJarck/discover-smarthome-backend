@@ -74,10 +74,8 @@ input {
   padding-top: 8px;
 }
 
-.test ::ng-deep {
-  .p-inputnumber-input {
-    width: 25px;
-  }
+.test {
+  width: 25px;
 }
 
 .mat-icon {

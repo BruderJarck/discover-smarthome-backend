@@ -36,7 +36,11 @@ export class SharedService {
 
   set addProducts(ammount: number) {
     this.totalAmmount = this.totalAmmount + ammount;
-    this.productAmmountSource.next(this.totalAmmount.toString());
+    this.calcTotalAmmount()
+  }
+
+  set totalItemAmmount(ammount: number) {
+    
   }
 
   deleteProductById(productId: number, ammount: number) {
@@ -62,6 +66,27 @@ export class SharedService {
       }
     }
     this.procductListSource.next(this.selectedProducts);
+  }
+
+  changeTotalAmmountById(productId: number, ammount: number) {
+    for (let item of this.selectedProducts) {
+      if (item.product.id === productId) {
+        if (ammount != 0) {
+          item.ammount = ammount;
+        }
+      }
+    }
+    this.procductListSource.next(this.selectedProducts);
+    this.calcTotalAmmount()
+  }
+
+  calcTotalAmmount() {
+    this.totalAmmount = 0
+    for (let item of this.selectedProducts) {
+      this.totalAmmount = this.totalAmmount + item.ammount
+    }
+
+    this.productAmmountSource.next(this.totalAmmount.toString());
   }
 
   constructor() {}
