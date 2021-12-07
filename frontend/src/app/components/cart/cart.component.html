@@ -32,11 +32,25 @@
                 </div>
                 <div fxLayout="row" class="options" fxLayoutAlign="none center">
                   <div>Menge:</div>
-                  <button mat-icon-button (click)="changeAmmount(item, 'sub', $event)">
+                  <button
+                    mat-icon-button
+                    (click)="changeAmmount(item, 'sub', $event)"
+                  >
                     <mat-icon>remove</mat-icon>
                   </button>
-                  <input type="text" class="test" [value]="item.ammount" (change)="changeAmmount(item, 'neut', $event)" maxlength="3">
-                  <button mat-icon-button (click)="changeAmmount(item, 'add', $event)">
+                  <input
+                    type="number"
+                    class="test"
+                    [value]="item.ammount"
+                    (change)="changeAmmount(item, 'neut', $event)"
+                    maxlength="3"
+                    min="1"
+                    max="100"
+                  />
+                  <button
+                    mat-icon-button
+                    (click)="changeAmmount(item, 'add', $event)"
+                  >
                     <mat-icon>add</mat-icon>
                   </button>
                   <div class="divider"></div>
@@ -74,15 +88,56 @@
     <div fxLayout="column" fxFlex="40%">
       <div fxFlex="grow">
         <mat-card class="card" fxLayout="column">
-          <button mat-flat-button fxFlex="grow" class="button long">Zur Kasse</button>
-          <br>
-          <div>Artikel ({{totalItems}}): EUR {{totalItemsBaseCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}}</div>
-          <div>Versandkosten: EUR {{(this.shipCost * this.totalItems).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}}</div>
-          <div>Bearbeitungskosten: EUR {{this.workCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}}</div>
-          <div>Mehrwertsteuer(24%): EUR {{(this.mwst * this.totalItemsBaseCost).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}}</div>
-          <br>
-          <div>Summe: EUR {{this.totalPrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}}</div>
-
+          <button mat-flat-button fxFlex="grow" class="button long">
+            Zur Kasse
+          </button>
+          <br />
+          <div>
+            Artikel ({{ totalItems }}): EUR
+            {{
+              totalItemsBaseCost.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+              })
+            }}
+          </div>
+          <div>
+            Versandkosten: EUR
+            {{
+              (this.shipCost * this.totalItems).toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+              })
+            }}
+          </div>
+          <div>
+            Bearbeitungskosten: EUR
+            {{
+              this.workCost.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+              })
+            }}
+          </div>
+          <div>
+            Mehrwertsteuer(24%): EUR
+            {{
+              (this.mwst * this.totalItemsBaseCost).toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+              })
+            }}
+          </div>
+          <br />
+          <div>
+            Summe: EUR
+            {{
+              this.totalPrice.toLocaleString(undefined, {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+              })
+            }}
+          </div>
         </mat-card>
       </div>
     </div>
