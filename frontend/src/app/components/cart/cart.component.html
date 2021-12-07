@@ -16,10 +16,10 @@
   fxLayout="column"
   *ngIf="items.length != 0"
 >
-  <div fxLayout="row" fxLayoutGap="16px">
+  <div fxLayout="row" fxLayoutGap="16px" fxFlex="grow">
     <div fxLayout="column" fxFlex="60%">
       <div fxFlex="grow">
-        <mat-card *ngFor="let item of items" class="card">
+        <mat-card *ngFor="let item of items" class="card height">
           <mat-card-content fxFlex="grow">
             <div fxLayout="row" fxFlex="grow">
               <div fxFlex="30%" class="picture" fxLayoutAlign="center none">
@@ -84,7 +84,17 @@
     </div>
     <div fxLayout="column" fxFlex="40%">
       <div fxFlex="grow">
-        <mat-card class="card"> hallo </mat-card>
+        <mat-card class="card" fxLayout="column">
+          <button mat-flat-button fxFlex="grow" class="button long">Zur Kasse</button>
+          <br>
+          <div>Artikel ({{totalItems}}): EUR {{totalItemsBaseCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}}</div>
+          <div>Versandkosten: EUR {{(this.shipCost * this.totalItems).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}}</div>
+          <div>Bearbeitungskosten: EUR {{this.workCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}}</div>
+          <div>Mehrwertsteuer(24%): EUR {{(this.mwst * this.totalItemsBaseCost).toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}}</div>
+          <br>
+          <div>Summe: EUR {{this.totalPrice.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}}</div>
+
+        </mat-card>
       </div>
     </div>
   </div>

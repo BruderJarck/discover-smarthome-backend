@@ -14,8 +14,10 @@
 }
 
 .card {
-  max-height: 150px;
   margin-bottom: 16px;
+  &.height {
+    max-height: 150px;
+  }
 }
 
 img {
@@ -116,6 +118,9 @@ input {
 
 .button {
   background-color: #fbac09;
+  &.long {
+    padding: 8px;
+  }
 }
 
 p {
