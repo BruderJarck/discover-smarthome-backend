@@ -68,7 +68,7 @@ export class SharedService {
             item.ammount = Number(ammount);
             this._snackBar.dismiss();
           } else {
-            this._snackBar.open('Ungültiger Wert, nur 0-100 möglich');
+            this._snackBar.open('Ungültiger Wert, nur 1-100 möglich');
           }
         }
       }
