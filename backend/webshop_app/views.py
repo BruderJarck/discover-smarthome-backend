@@ -1,5 +1,7 @@
 import json
+from django.http import response
 from django.http.response import JsonResponse
+from rest_framework.response import Response
 from sqlalchemy import create_engine
 
 from django.http import HttpResponse
@@ -92,7 +94,7 @@ def SensorApi():
 class SensorViewset(viewsets.ModelViewSet):
     queryset = SensorModel.objects.all()
     serializer_class = SensorSerializer    
-    search_fields = ['user_id']
+    search_fields = ['user_id__id']
     filter_backends = (filters.SearchFilter, )
     # authentication_classes = [JWTAuthentication, ]
     # permission_classes = [IsAuthenticated, ]
@@ -100,7 +102,7 @@ class SensorViewset(viewsets.ModelViewSet):
 class SensorValueViewset(viewsets.ModelViewSet):
     queryset = SensorValueModel.objects.all()
     serializer_class = SensorValueSerializer    
-    search_fields = ['sensor_id']
+    search_fields = ['sensor_id__id']
     filter_backends = (filters.SearchFilter, )
     # authentication_classes = [JWTAuthentication, ]
     # permission_classes = [IsAuthenticated, ]

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { SensorService } from 'src/app/shared/sensor.service';
 import { SensorModel } from '../../sensor';
-
+import { SensorValueModel } from 'src/app/sensor_value';
 @Component({
   selector: 'app-sensor-data',
   templateUrl: './sensor-data.component.html',
@@ -9,64 +9,77 @@ import { SensorModel } from '../../sensor';
 })
 export class SensorDataComponent {
   panelOpenState: boolean = false;
-  datamodel: any;
   options: any;
   res: any;
   sensors: SensorModel[] = [];
+  user_id: string = "2";
+
+  temp: any[] = []
+  hum: any[] = []
+  pres: any[] = []
+  dt: any[] = []
 
   constructor(private sensorService: SensorService) {
     
-    this.sensorService.getSensors().subscribe(
+    this.sensorService.filterSensorsByUserId(this.user_id).subscribe(
       (response) => {
-        
         for(let value in response){
-          var sensor: SensorModel = {
-            id: response[value].specs[0],
-            name: response[value].specs[3],
-            data: this.generateSensorTableDataModel(response[value]),
-            location: response[value].specs[2],
-            ip_address: response[value].specs[4]
-          };
-          this.sensors.push(sensor)
+          this.sensorService.filterSensorsBySensorId(String(response[value].id)).subscribe(
+            (response) => {
+              for(let value in response){
+                this.temp.push(response[value].id)
+                this.hum.push(response[value].hum)
+                this.pres.push(response[value].pres)
+                this.dt.push(response[value].dt)
+              }
+      
+              var datamodel = {
+                labels: this.dt,
+                datasets: [
+                  {
+                    label: 'temp',
+                    data: this.temp,
+                    backgroundColor: '#FFA726',
+                    borderColor: '#FFA726',
+                    yAxisID: "y",
+                    borderWidth: 3,
+                    tension: 0.4,
+                  },
+                  {
+                    label: 'hum',
+                    data: this.hum,
+                    backgroundColor: '#42A5F5',
+                    borderColor: '#42A5F5',
+                    yAxisID: "y1",
+                    borderWidth: 3,
+                    tension: 0.4,
+                  },
+                  {
+                    label: 'pres',
+                    data: this.pres,
+                    borderColor: '#66BB6A',
+                    backgroundColor: '#66BB6A',
+                    yAxisID: "y2",
+                    borderWidth: 3,
+                    tension: 0.4,
+                  },
+                ],
+              };
+              
+              var sensor: SensorModel = {
+                id: response[value].id,
+                name: response[value].name,
+                data: datamodel,
+                location: response[value].location,
+                ip_address: response[value].ip_address
+              };
+    
+              this.sensors.push(sensor)
+            }
+          )
         }
       },
       err=> console.log(err),
       )
-  }
-
-  generateSensorTableDataModel(res: any) {
-    var datamodel = {
-      labels: res.dt,
-      datasets: [
-        {
-          label: 'temp',
-          data: res.temp,
-          backgroundColor: '#FFA726',
-          borderColor: '#FFA726',
-          yAxisID: "y",
-          borderWidth: 3,
-          tension: 0.4,
-        },
-        {
-          label: 'hum',
-          data: res.hum,
-          backgroundColor: '#42A5F5',
-          borderColor: '#42A5F5',
-          yAxisID: "y1",
-          borderWidth: 3,
-          tension: 0.4,
-        },
-        {
-          label: 'pres',
-          data: res.pres,
-          borderColor: '#66BB6A',
-          backgroundColor: '#66BB6A',
-          yAxisID: "y2",
-          borderWidth: 3,
-          tension: 0.4,
-        },
-      ],
-    };
-    return datamodel
   }
 }
