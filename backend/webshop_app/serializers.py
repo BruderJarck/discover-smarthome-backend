@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import ProductModel, SensorModel, SensorValueModel
 
@@ -16,3 +17,8 @@ class SensorValueSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = SensorValueModel
         fields = ['id', 'sensor_id', 'temp', 'pres', 'hum', 'dt']
+
+class CustomUserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'username', 'email']

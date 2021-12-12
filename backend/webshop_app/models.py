@@ -37,4 +37,3 @@ class SensorValueModel(models.Model):
 
     def __str__(self) -> str:
         return f"{self.id} belonging to {self.sensor_id}, at {self.dt}"
-
