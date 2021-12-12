@@ -72,8 +72,11 @@ WSGI_APPLICATION = 'webshop.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd9bpckdl51vrg7',
+        'USER': 'azurapgettigtr',
+        'PASSWORD': '6945c05f559786a11fa5e2cc87200bf8c9d66af88c622a8acfefa71914cb33eb',
+        'HOST': 'ec2-3-209-38-221.compute-1.amazonaws.com'
     }
 }
 

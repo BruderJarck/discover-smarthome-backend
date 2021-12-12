@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { sensor } from '../../sensor';
+import { SensorService } from 'src/app/shared/sensor.service';
+import { SensorModel } from '../../sensor';
 
 @Component({
   selector: 'app-sensor-data',
@@ -8,72 +9,64 @@ import { sensor } from '../../sensor';
 })
 export class SensorDataComponent {
   panelOpenState: boolean = false;
-  data: any;
+  datamodel: any;
   options: any;
-  sensors: sensor[] = [];
+  res: any;
+  sensors: SensorModel[] = [];
 
-  constructor() {
-    this.generateData();
-    var sensor1: sensor = {
-      id: 1,
-      name: 'sensor1',
-      data: this.data,
-      location: 'Kitchen',
-    };
-    this.generateData();
-    var sensor2: sensor = {
-      id: 2,
-      name: 'sensor2',
-      data: this.data,
-      location: 'Bathroom',
-    };
-    this.generateData();
-    var sensor3: sensor = {
-      id: 3,
-      name: 'sensor3',
-      data: this.data,
-      location: 'Diningroom',
-    };
-    this.generateData();
-    var sensor4: sensor = {
-      id: 4,
-      name: 'sensor4',
-      data: this.data,
-      location: 'Workshop',
-    };
-
-    this.sensors = [sensor1, sensor2, sensor3, sensor4];
+  constructor(private sensorService: SensorService) {
+    
+    this.sensorService.getSensors().subscribe(
+      (response) => {
+        
+        for(let value in response){
+          var sensor: SensorModel = {
+            id: response[value].specs[0],
+            name: response[value].specs[3],
+            data: this.generateSensorTableDataModel(response[value]),
+            location: response[value].specs[2],
+            ip_address: response[value].specs[4]
+          };
+          this.sensors.push(sensor)
+        }
+      },
+      err=> console.log(err),
+      )
   }
 
-  generateRandomData(lenth: any) {
-    let data: any[] = [];
-    for (let i = 0; i < lenth; i++) {
-      data.push(Math.floor(Math.random() * (50 + 1)));
-    }
-    return data;
-  }
-
-  generateData() {
-    this.data = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+  generateSensorTableDataModel(res: any) {
+    var datamodel = {
+      labels: res.dt,
       datasets: [
         {
-          label: 'First Dataset',
-          data: this.generateRandomData(10),
+          label: 'temp',
+          data: res.temp,
           backgroundColor: '#FFA726',
           borderColor: '#FFA726',
+          yAxisID: "y",
           borderWidth: 3,
           tension: 0.4,
         },
         {
-          label: 'Second Dataset',
-          data: this.generateRandomData(10),
+          label: 'hum',
+          data: res.hum,
           backgroundColor: '#42A5F5',
           borderColor: '#42A5F5',
+          yAxisID: "y1",
+          borderWidth: 3,
+          tension: 0.4,
+        },
+        {
+          label: 'pres',
+          data: res.pres,
+          borderColor: '#66BB6A',
+          backgroundColor: '#66BB6A',
+          yAxisID: "y2",
           borderWidth: 3,
           tension: 0.4,
         },
       ],
     };
+    return datamodel
   }
 }

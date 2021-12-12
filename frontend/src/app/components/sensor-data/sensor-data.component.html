@@ -4,10 +4,11 @@
     <mat-expansion-panel hideToggle>
       <mat-expansion-panel-header>
         <mat-panel-title>
-          {{ sensor.name }}
+          {{ sensor.id }}: {{ sensor.name }}
         </mat-panel-title>
         <mat-panel-description>
-          location: {{ sensor.location }}
+          location: {{ sensor.location }} 
+          <span style="margin-left: 50px;">ip-address: {{ sensor.ip_address}}</span>
         </mat-panel-description>
       </mat-expansion-panel-header>
       <div class="card">
