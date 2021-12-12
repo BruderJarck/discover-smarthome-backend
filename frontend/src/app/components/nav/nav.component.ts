@@ -17,7 +17,9 @@ export interface Chip {
 export class NavComponent implements OnInit {
   ammount: any = 0;
 
-  constructor(public dialog: MatDialog, public sharedService: SharedService) {}
+  constructor(
+    public dialog: MatDialog, 
+    public sharedService: SharedService) {}
 
   ngOnInit(): void {
     this.sharedService.reLogin.subscribe(
@@ -52,7 +54,10 @@ export class Login {
   password = new FormControl('', [Validators.required]);
 
   hide = true;
-  constructor(public accountService: AccountService, private router: Router) {}
+  constructor(
+    public accountService: AccountService, 
+    private router: Router,
+    private sharedService: SharedService) {}
 
   getErrorMessage() {
     if (this.email.hasError('required')) {
@@ -72,6 +77,7 @@ export class Login {
         },
         (err) => {
           console.log(err);
+          this.sharedService.loginFailed.next(true)
         }
       );
     console.log(this.email.value);

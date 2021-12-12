@@ -102,7 +102,7 @@ export class AccountService {
   logout() {
     localStorage.removeItem('access');
     localStorage.removeItem('refresh');
-    location.href = '/';
+    // location.href = '/';
   }
 
   getAllUseres(): Observable<UserModel[]>{
