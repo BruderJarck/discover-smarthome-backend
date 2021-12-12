@@ -73,3 +73,5 @@ class CustomUserViewset(viewsets.ModelViewSet):
     serializer_class = CustomUserSerializer
     search_fields = ['username']
     filter_backends = (filters.SearchFilter, )
+    authentication_classes = [JWTAuthentication, ]
+    permission_classes = [IsAuthenticated, ]

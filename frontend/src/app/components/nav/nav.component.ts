@@ -20,8 +20,6 @@ export class NavComponent implements OnInit {
   constructor(public dialog: MatDialog, public sharedService: SharedService) {}
 
   ngOnInit(): void {
-<<<<<<< HEAD
-=======
     this.sharedService.reLogin.subscribe(
       reLoginState => {
         if(reLoginState == true){
@@ -30,8 +28,7 @@ export class NavComponent implements OnInit {
         }
       }
     )
-    this.sharedService.addProducts = 0;
->>>>>>> 2347638 (update 2)
+    // this.sharedService.addProduct = 0;
     this.sharedService.productAmmount.subscribe((ammount: any) => {
       this.ammount = ammount;
     });
