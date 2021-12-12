@@ -3,8 +3,10 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
 import { RespModel } from '../resp';
 import { UserModel } from '../user';
+import { SharedService } from './shared.service';
 
 @Injectable({
   providedIn: 'root',
@@ -19,10 +21,12 @@ export class AccountService {
   constructor(
     private http: HttpClient,
     private jwtHelper: JwtHelperService,
+    private sharedService: SharedService,
     private router: Router
   ) {}
 
   private baseURL = 'http://127.0.0.1:5000/';
+  private usersURL = 'http://127.0.0.1:5000/users/';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -30,6 +34,15 @@ export class AccountService {
       Authorization: 'Bearer ' + this.accessToken,
     }),
   };
+
+  canActivate(): boolean {
+    if (this.isExpired(localStorage.getItem('refresh') || '')) {
+      this.router.navigate(['/']);
+      this.sharedService.loginFailed.next(true)
+      return false;
+    }
+    return true;
+  }
 
   getAccessTokenPayload() {
     return JSON.stringify(this.jwtHelper.decodeToken(this.accessToken));
@@ -44,13 +57,6 @@ export class AccountService {
     return this.jwtHelper.isTokenExpired(token);
   }
 
-  canActivate(): boolean {
-    if (this.isExpired(localStorage.getItem('access') || '')) {
-      this.router.navigate(['/']);
-      return false;
-    }
-    return true;
-  }
   getTokensFromBackend(username: string, password: string) {
     return this.http
       .post<UserModel>(this.baseURL + 'api/token/', { username, password })
@@ -71,7 +77,7 @@ export class AccountService {
         this.httpOptions
       )
       .pipe(
-        tap((res) => console.log(`got refreshed tokens ${res['access']}`)),
+        tap((res) => console.log(`got refreshed tokens ${res['access']} ${this.isExpired(res['refresh'])} ${res}`)),
         tap((res) => this.saveTokens(res, true))
       );
   }
@@ -96,11 +102,27 @@ export class AccountService {
   logout() {
     localStorage.removeItem('access');
     localStorage.removeItem('refresh');
-    location.href = '/login';
+    location.href = '/';
+  }
+
+  getAllUseres(): Observable<UserModel[]>{
+    return this.http.get<UserModel[]>(`${this.usersURL}`);
+  }
+
+  getUserById(id: number): Observable<UserModel> {
+    const url = this.usersURL + id;
+    return this.http.get<UserModel>(url);
+  }
+
+  getUserByUsername(term: string): Observable<UserModel[]>{
+    if (!term.trim()) {
+      return of([]);
+    }
+    return this.http.get<UserModel[]>(`${this.usersURL}?search=${term}`);
   }
 
   getEmail(email: string) {
-    // if(!email.trim()){return of([]);}
+    if(!email.trim()){return of([]);}
     return this.http.get(`${this.baseURL}?search=${email}`, this.httpOptions);
   }
 }

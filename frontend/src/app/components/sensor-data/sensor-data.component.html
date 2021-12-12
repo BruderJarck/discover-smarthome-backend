@@ -1,4 +1,5 @@
 <h2 class="header">Your sensors:</h2>
+<div fxLayout="row" fxLayoutAlign="center"><mat-spinner *ngIf=loading></mat-spinner></div>
 <mat-accordion>
   <div *ngFor="let sensor of sensors">
     <mat-expansion-panel hideToggle>

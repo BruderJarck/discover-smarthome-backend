@@ -20,6 +20,18 @@ export class NavComponent implements OnInit {
   constructor(public dialog: MatDialog, public sharedService: SharedService) {}
 
   ngOnInit(): void {
+<<<<<<< HEAD
+=======
+    this.sharedService.reLogin.subscribe(
+      reLoginState => {
+        if(reLoginState == true){
+          this.openDialog()
+          this.sharedService.reLogin.next(false)
+        }
+      }
+    )
+    this.sharedService.addProducts = 0;
+>>>>>>> 2347638 (update 2)
     this.sharedService.productAmmount.subscribe((ammount: any) => {
       this.ammount = ammount;
     });
@@ -57,7 +69,10 @@ export class Login {
     this.accountService
       .getTokensFromBackend(this.email.value, this.password.value)
       .subscribe(
-        () => this.router.navigateByUrl('/user'),
+        () => {
+          this.router.navigateByUrl('/user')
+          localStorage.setItem('username', this.email.value)
+        },
         (err) => {
           console.log(err);
         }

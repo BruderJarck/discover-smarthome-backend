@@ -10,11 +10,6 @@ export interface Categorie {
   styleUrls: ['./categories.component.scss'],
 })
 export class CategoriesComponent implements OnInit {
-  categories: Categorie[] = [
-    { name: 'Hardware' },
-    { name: 'Software' },
-    { name: 'Services' },
-  ];
 
   constructor() {}
 

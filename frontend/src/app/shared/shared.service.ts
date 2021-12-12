@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
+<<<<<<< HEAD
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { BehaviorSubject } from 'rxjs';
+=======
+import { BehaviorSubject, Subject } from 'rxjs';
+>>>>>>> 2347638 (update 2)
 
 @Injectable({
   providedIn: 'root',
@@ -8,6 +12,8 @@ import { BehaviorSubject } from 'rxjs';
 export class SharedService {
   selectedProducts: any = [];
   totalAmmount: number = 0;
+  loginFailed: Subject<boolean> = new Subject();
+  reLogin: Subject<boolean> = new Subject();
 
   private procductListSource = new BehaviorSubject([]);
   productList = this.procductListSource.asObservable();
@@ -77,6 +83,7 @@ export class SharedService {
     this.calcTotalAmmount();
   }
 
+<<<<<<< HEAD
   calcTotalAmmount() {
     this.totalAmmount = 0;
     for (let item of this.selectedProducts) {
@@ -88,4 +95,9 @@ export class SharedService {
       this.productAmmountSource.next(this.totalAmmount.toString());
     }
   }
+=======
+ 
+
+  constructor() {}
+>>>>>>> 2347638 (update 2)
 }

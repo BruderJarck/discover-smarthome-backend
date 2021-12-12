@@ -22,6 +22,10 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
 import { SharedModule } from './shared/shared-module';
 import { SharedService } from './shared/shared.service';
 
+import { authInterceptorProviders } from './auth-interceptor';
+import { LoginFailedComponent } from './components/login-failed/login-failed.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +40,7 @@ import { SharedService } from './shared/shared.service';
     SensorDataComponent,
     ProductListComponent,
     MainPageComponent,
+    LoginFailedComponent,
   ],
   imports: [
     RouterModule,
@@ -49,6 +54,7 @@ import { SharedService } from './shared/shared.service';
     AccordionModule,
   ],
   providers: [
+    authInterceptorProviders,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
     SharedService,
