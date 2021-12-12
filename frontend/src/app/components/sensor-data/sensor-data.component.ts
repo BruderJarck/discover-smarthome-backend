@@ -29,15 +29,15 @@ export class SensorDataComponent {
       this.accountService.getUserByUsername(username).subscribe(
         (user) =>  {
           this.sensorService.filterSensorsByUserId(String(user[0].id)).subscribe(
-            (response) => {
-              for(let value in response){
-                this.sensorService.filterSensorsBySensorId(String(response[value].id)).subscribe(
-                  (response) => {
-                    for(let value in response){
-                      this.temp.push(response[value].id)
-                      this.hum.push(response[value].hum)
-                      this.pres.push(response[value].pres)
-                      this.dt.push(response[value].dt)
+            (sesorResponse) => {
+              for(let _sensor in sesorResponse){
+                this.sensorService.filterSensorsBySensorId(String(sesorResponse[_sensor].id)).subscribe(
+                  (sensorValueResponse) => {
+                    for(let sensorValue in sensorValueResponse){
+                      this.temp.push(sensorValueResponse[sensorValue].id)
+                      this.hum.push(sensorValueResponse[sensorValue].hum)
+                      this.pres.push(sensorValueResponse[sensorValue].pres)
+                      this.dt.push(sensorValueResponse[sensorValue].dt)
                     }
             
                     var datamodel = {
@@ -72,13 +72,14 @@ export class SensorDataComponent {
                         },
                       ],
                     };
+                    console.log(sesorResponse[_sensor]);
                     
                     var sensor: SensorModel = {
-                      id: response[value].id,
-                      name: response[value].name,
+                      id: sesorResponse[_sensor].id,
+                      name: sesorResponse[_sensor].name,
                       data: datamodel,
-                      location: response[value].location,
-                      ip_address: response[value].ip_address
+                      location: sesorResponse[_sensor].location,
+                      ip_address: sesorResponse[_sensor].ip_address
                     };
           
                     this.sensors.push(sensor)
