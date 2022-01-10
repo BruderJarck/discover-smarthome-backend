@@ -43,3 +43,9 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+**.idea
+**__pycache__
+**venv
+
+backend/hero_tour/venv/
+backend/media
