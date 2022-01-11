@@ -1,3 +1,4 @@
+import cloudinary
 from django.contrib.auth import get_user_model
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
@@ -38,10 +39,12 @@ class PrivateUserSerializer(serializers.ModelSerializer):
     #     max_length=None,
     #     use_url=True
     # )
-    profile_picture = Base64ImageField()
 
 
     def create(self, validated_data):
+            cloudinary.uploader.upload(validated_data['profile_picture'])
+
+            
             return User.objects.create_user(
                 username=validated_data['username'],
                 email=validated_data['email'],

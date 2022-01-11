@@ -3,20 +3,22 @@ from datetime import timedelta
 import os
 from pathlib import Path
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+DEBUG = True
+
+ALLOWED_HOSTS = []
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-0k%h7#hzvrris18pz2rrkq-qip-0)1z8hnhdactqqgt6hu#ur='
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 # Application definition
 
@@ -31,6 +33,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'webshop_app',
+    'cloudinary',
 ]
 
 MIDDLEWARE = [
@@ -71,25 +74,6 @@ WSGI_APPLICATION = 'webshop.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'daib5d5ht67295',
-        'USER': 'qcvactoiyjhbkr',
-        'PASSWORD': '26803fa54149644d167c5316d45162cb97aeb018961a27a998c117a01efb4175',
-        'HOST': 'ec2-54-157-113-118.compute-1.amazonaws.com'
-    }
-
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
-    # }
-}
-
-WHITENOISE_USE_FINDERS = True
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
@@ -148,3 +132,11 @@ EMAIL_HOST_USER = "huestajarck@gmail.com"
 EMAIL_HOST_PASSWORD = "xnjmzfzrspcvcevp"
 
 DATA_UPLOAD_MAX_MEMORY_SIZE=1000000000
+
+cloudinary.config( 
+  cloud_name = "discover-smarthome", 
+  api_key = "356421552775321", 
+  api_secret = "iTh9UZG0xA43UO-H8MCuUzb4rN8" 
+)
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

@@ -3,7 +3,8 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 from webshop import settings
-from .fields import Base64ImageField
+from cloudinary.models import CloudinaryField
+
 
 def upload_path(instance, filename):
     return "/".join(["products", instance.name, filename]) or "/"
@@ -15,7 +16,7 @@ class ProductModel(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=40)
     price = models.IntegerField()
-    img = models.ImageField(upload_to=upload_path, default="")
+    img = CloudinaryField('product')
     description = models.CharField(max_length=3000000)
 
     def __str__(self) -> str:
@@ -46,7 +47,7 @@ class SensorValueModel(models.Model):
 class UserProfile(AbstractUser):
     email = models.EmailField(
         help_text='Required. example: jon.doe@email.com')
-    profile_picture = models.ImageField(upload_to=upload_path_profile_img, default="")
+    profile_picture = CloudinaryField('profile_picture')
 
     def __str__(self) -> str:
         return f"User {self.username}"

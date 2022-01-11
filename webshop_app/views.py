@@ -74,7 +74,6 @@ class CustomUserViewset(viewsets.ModelViewSet):
 @decorators.api_view(['POST'])
 @decorators.permission_classes([AllowAny])
 def register_new_user(request):
-
     serializer = PrivateUserSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
