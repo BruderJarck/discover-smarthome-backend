@@ -106,9 +106,9 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
-DATA_UPLOAD_MAX_MEMORY_SIZE = 10000000
+# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# MEDIA_URL = '/media/'
+# DATA_UPLOAD_MAX_MEMORY_SIZE = 10000000
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
