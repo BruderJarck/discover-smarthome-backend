@@ -28,6 +28,16 @@ class SensorValueSerializer(serializers.ModelSerializer):
 
 
 class PublicUserSerializer(serializers.ModelSerializer):
+    def create(self, validated_data):
+        new_pic = cloudinary.uploader.upload(validated_data['profile_picture'])
+        
+        return User.objects.create_user(
+            username=validated_data['username'],
+            email=validated_data['email'],
+            password=validated_data['password'],
+            profile_picture=new_pic['url']
+        )
+
     class Meta:
         model = get_user_model()
         fields = ['id', 'username', 'email', 'profile_picture']
@@ -42,14 +52,13 @@ class PrivateUserSerializer(serializers.ModelSerializer):
 
 
     def create(self, validated_data):
-            cloudinary.uploader.upload(validated_data['profile_picture'])
-
+            new_pic = cloudinary.uploader.upload(validated_data['profile_picture'])
             
             return User.objects.create_user(
                 username=validated_data['username'],
                 email=validated_data['email'],
                 password=validated_data['password'],
-                profile_picture=validated_data['profile_picture']
+                profile_picture=new_pic['url']
             )
 
 

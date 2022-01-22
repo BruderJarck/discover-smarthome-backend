@@ -16,7 +16,7 @@ class ProductModel(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=40)
     price = models.IntegerField()
-    img = CloudinaryField('product')
+    img = models.URLField(help_text="this needs to the cloudinary url which represents the desired image")
     description = models.CharField(max_length=3000000)
 
     def __str__(self) -> str:
@@ -47,8 +47,12 @@ class SensorValueModel(models.Model):
 class UserProfile(AbstractUser):
     email = models.EmailField(
         help_text='Required. example: jon.doe@email.com')
-    profile_picture = CloudinaryField('profile_picture')
+    profile_picture = models.CharField(
+        max_length=10000000,
+        help_text="this needs to the cloudinary url which represents the desired image")
 
     def __str__(self) -> str:
         return f"User {self.username}"
     
+# CloudinaryImage("leonski.png").build_url(width=250, height=250, gravity="faces", crop="thumb")
+# cloudinary.uploader.upload(CloudinaryImage("me.jpg").build_url(width=250, height=250, gravity="faces", crop="thumb"))
